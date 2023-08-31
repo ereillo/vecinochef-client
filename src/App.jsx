@@ -8,6 +8,8 @@ import MyProfile from "./pages/MyProfile"
 import Error from "./pages/Error"
 import NotFound from "./pages/NotFound"
 
+import IsPrivate from './components/isPrivate'
+
 
 function App() {
 
@@ -21,7 +23,7 @@ function App() {
       <Route path="/" element={<Main/>}/>
       <Route path="/login" element= {<Login/>}/>
       <Route path="/signup" element= {<Signup/>}/>
-      <Route path="/myprofile" element= {<MyProfile/>}/>
+      <Route path="/myprofile" element= {<IsPrivate><MyProfile/></IsPrivate>}/>
 
       
       <Route path="/error" element = {<Error/>} />
