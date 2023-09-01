@@ -10,6 +10,7 @@ import NotFound from "./pages/NotFound"
 import Home from './pages/Home'
 
 import IsPrivate from './components/isPrivate'
+import AddEspecialidad from './pages/AddEspecialidad'
 
 
 function App() {
@@ -26,6 +27,8 @@ function App() {
       <Route path="/signup" element= {<Signup/>}/>
       <Route path="/myprofile" element= {<IsPrivate><MyProfile/></IsPrivate>}/>
       <Route path="/user/home" element = {<IsPrivate><Home/></IsPrivate>}/>
+      <Route path="/user/add-especialidad" element = {<IsPrivate><AddEspecialidad/></IsPrivate>}/>
+
       
       <Route path="/error" element = {<Error/>} />
       <Route path="*" element = {<NotFound/>}/>
