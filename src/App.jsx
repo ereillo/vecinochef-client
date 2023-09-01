@@ -7,6 +7,7 @@ import Main from "./pages/Main"
 import MyProfile from "./pages/MyProfile"
 import Error from "./pages/Error"
 import NotFound from "./pages/NotFound"
+import Home from './pages/Home'
 
 import IsPrivate from './components/isPrivate'
 
@@ -24,7 +25,7 @@ function App() {
       <Route path="/login" element= {<Login/>}/>
       <Route path="/signup" element= {<Signup/>}/>
       <Route path="/myprofile" element= {<IsPrivate><MyProfile/></IsPrivate>}/>
-
+      <Route path="/user/home" element = {<IsPrivate><Home/></IsPrivate>}/>
       
       <Route path="/error" element = {<Error/>} />
       <Route path="*" element = {<NotFound/>}/>
