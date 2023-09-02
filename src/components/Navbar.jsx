@@ -19,9 +19,9 @@ function Navbar() {
     <div>
       {isUserActive === true ? (
         <>
-          <Link to="/user/home">Home</Link>
-          <Link to="/myprofile">Mi perfil</Link>
-          <Link to="/user/add-especialidad">Crea un plato</Link>
+          <Link to="/menu/home">Home</Link>
+          <Link to="/user/myprofile">Mi perfil</Link>
+          <Link to="/esp/add-especialidad">Crea un plato</Link>
 
           <button onClick={handleLogOut}>Cerrar sesión</button>
         </>

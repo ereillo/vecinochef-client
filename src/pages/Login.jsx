@@ -36,7 +36,7 @@ try {
 
       await verifyToken()
 
-      navigate("/myprofile")
+      navigate("/user/myprofile")
 
     } catch (error) {
       console.log(error)

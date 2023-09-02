@@ -11,6 +11,7 @@ import Home from './pages/Home'
 
 import IsPrivate from './components/isPrivate'
 import AddEspecialidad from './pages/AddEspecialidad'
+import EditEspecialidad from './pages/EditEspecialidad'
 
 
 function App() {
@@ -25,10 +26,10 @@ function App() {
       <Route path="/" element={<Main/>}/>
       <Route path="/login" element= {<Login/>}/>
       <Route path="/signup" element= {<Signup/>}/>
-      <Route path="/myprofile" element= {<IsPrivate><MyProfile/></IsPrivate>}/>
-      <Route path="/user/home" element = {<IsPrivate><Home/></IsPrivate>}/>
-      <Route path="/user/add-especialidad" element = {<IsPrivate><AddEspecialidad/></IsPrivate>}/>
-
+      <Route path="/user/myprofile" element= {<IsPrivate><MyProfile/></IsPrivate>}/>
+      <Route path="/menu/home" element = {<IsPrivate><Home/></IsPrivate>}/>
+      <Route path="/esp/add-especialidad" element = {<IsPrivate><AddEspecialidad/></IsPrivate>}/>
+      <Route path="/esp/edit-especialidad/:id" element = {<IsPrivate><EditEspecialidad/></IsPrivate>}/>
       
       <Route path="/error" element = {<Error/>} />
       <Route path="*" element = {<NotFound/>}/>
