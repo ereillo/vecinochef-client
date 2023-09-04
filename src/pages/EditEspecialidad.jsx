@@ -38,7 +38,7 @@ function EditEspecialidad() {
     console.log(response)
     setEspecialidadNombre (response.data.especialidadNombre)
     setEspecialidadIngredientes (response.data.especialidadIngredientes)
-    setEspecialidadPic (response.data.especialidadPic)
+    setEspecialidadPic (response.data.cloudinaryUrl)
     setEspecialidadPrecio (response.data.especialidadPrecio)
     setIsEspecialidad (response.data.isEspecialidad)
         } catch (error) {

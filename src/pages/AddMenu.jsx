@@ -1,27 +1,42 @@
-import { useState } from "react";
+
+import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import service from "../services/service.config";
 
 function AddMenu(props) {
   const navigate = useNavigate();
 
-  const [platoNombre, setPlatoNombre] = useState("");
-  const [postreNombre, setPostreNombre] = useState("");
+  const [platoNombre, setPlatoNombre] = useState(""); // Cambiar platoNombre por platoId
+  const [postreNombre, setPostreNombre] = useState(""); // Cambiar postreNombre por postreId
   const [weekDay, setWeekDay] = useState("");
   const [menuPrecio, setMenuPrecio] = useState("");
+  const [specialidades, setSpecialidades] = useState([]); // Nuevo estado para almacenar especialidades
 
-  const handlePlatoNombreChange = (e) => setPlatoNombre(e.target.value);
-  const handlePostreNombreChange = (e) => setPostreNombre(e.target.value);
+  const handlePlatoIdChange = (e) => setPlatoNombre(e.target.value);
+  const handlePostreIdChange = (e) => setPostreNombre(e.target.value);
   const handleWeekDayChange = (e) => setWeekDay(e.target.value);
   const handleMenuPrecioChange = (e) => setMenuPrecio(e.target.value);
+
+  useEffect(() => {
+    async function fetchSpecialidades() {
+      try {
+        const response = await service.get("/esp/especialidades");
+        setSpecialidades(response.data); // Cargar las especialidades del usuario
+      } catch (error) {
+        navigate("/user/myprofile");
+      }
+    }
+
+    fetchSpecialidades();
+  }, [navigate]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
     try {
       await service.post("/menu/add-menu", {
-        platoNombre,
-        postreNombre,
+        platoNombre, 
+        postreNombre, 
         weekDay,
         menuPrecio,
       });
@@ -30,6 +45,7 @@ function AddMenu(props) {
       navigate("/user/myprofile");
     }
   };
+
   return (
     <div>
       <h3>Crear menú</h3>
@@ -37,24 +53,33 @@ function AddMenu(props) {
       <form onSubmit={handleSubmit}>
         <label htmlFor="platoNombre">Plato principal</label>
         <select
-          type="text"
           name="platoNombre"
-          onChange={handlePlatoNombreChange}
-          value={platoNombre.platoNombre}
+          onChange={handlePlatoIdChange}
+          value={platoNombre}
         >
           <option value="">Seleccionar plato</option>
-          {}
-          </select>
+          {specialidades.map((especialidad) => (
+            <option key={especialidad._id} value={especialidad.especialidadNombre}>
+              {especialidad.especialidadNombre}
+            </option>
+          ))}
+        </select>
 
         <br />
 
         <label htmlFor="postreNombre">Postre</label>
-        <input
-          type="text"
+        <select
           name="postreNombre"
-          onChange={handlePostreNombreChange}
+          onChange={handlePostreIdChange}
           value={postreNombre}
-        />
+        >
+          <option value="">Seleccionar postre</option>
+          {specialidades.map((especialidad) => (
+            <option key={especialidad._id} value={especialidad.especialidadNombre}>
+              {especialidad.especialidadNombre}
+            </option>
+          ))}
+        </select>
 
         <br />
 
