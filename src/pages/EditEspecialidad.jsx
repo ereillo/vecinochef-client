@@ -169,7 +169,7 @@ function EditEspecialidad() {
 
       <br />
        
-      <button type="submit">Editar plato</button>
+      <button type="submit">Actualizar plato</button>
 
       <br/>
 

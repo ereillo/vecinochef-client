@@ -12,6 +12,7 @@ import Home from './pages/Home'
 import IsPrivate from './components/isPrivate'
 import AddEspecialidad from './pages/AddEspecialidad'
 import EditEspecialidad from './pages/EditEspecialidad'
+import EditProfile from './pages/EditProfile'
 
 
 function App() {
@@ -26,8 +27,12 @@ function App() {
       <Route path="/" element={<Main/>}/>
       <Route path="/login" element= {<Login/>}/>
       <Route path="/signup" element= {<Signup/>}/>
+
       <Route path="/user/myprofile" element= {<IsPrivate><MyProfile/></IsPrivate>}/>
+      <Route path="/user/edit-profile/:userId" element= {<IsPrivate><EditProfile/></IsPrivate>}/>
+
       <Route path="/menu/home" element = {<IsPrivate><Home/></IsPrivate>}/>
+
       <Route path="/esp/add-especialidad" element = {<IsPrivate><AddEspecialidad/></IsPrivate>}/>
       <Route path="/esp/edit-especialidad/:id" element = {<IsPrivate><EditEspecialidad/></IsPrivate>}/>
       
