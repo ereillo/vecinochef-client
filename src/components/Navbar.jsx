@@ -23,6 +23,9 @@ function Navbar() {
           <Link to="/user/myprofile">Mi perfil</Link>
           <Link to="/esp/add-especialidad">Crea un plato</Link>
 
+          <Link to="/menu/add-menu">Crea un menú</Link>
+
+
           <button onClick={handleLogOut}>Cerrar sesión</button>
         </>
       ) : (

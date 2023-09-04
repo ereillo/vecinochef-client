@@ -95,7 +95,7 @@ function EditEspecialidad() {
         try {
           const response = await uploadImageService(uploadData);
     
-          setEspecialidadPic(response.data.especialidadPic);
+          setEspecialidadPic(response.data.cloudinaryUrl);
     
           setIsUploading(false); 
         } catch (error) {

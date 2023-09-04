@@ -96,8 +96,8 @@ const navigate = useNavigate()
     
         try {
           const response = await uploadImageService(uploadData);
-    
-          setProfilePic(response.data.profilePic);
+          console.log(response.data.cloudinaryUrl)
+          setProfilePic(response.data.cloudinaryUrl);
     
           setIsUploading(false); 
         } catch (error) {

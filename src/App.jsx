@@ -14,6 +14,8 @@ import AddEspecialidad from './pages/AddEspecialidad'
 import EditEspecialidad from './pages/EditEspecialidad'
 import EditProfile from './pages/EditProfile'
 
+import AddMenu from "./pages/AddMenu"
+
 
 function App() {
 
@@ -32,6 +34,8 @@ function App() {
       <Route path="/user/edit-profile/:userId" element= {<IsPrivate><EditProfile/></IsPrivate>}/>
 
       <Route path="/menu/home" element = {<IsPrivate><Home/></IsPrivate>}/>
+      <Route path="/menu/add-menu" element = {<IsPrivate><AddMenu/></IsPrivate>}/>
+
 
       <Route path="/esp/add-especialidad" element = {<IsPrivate><AddEspecialidad/></IsPrivate>}/>
       <Route path="/esp/edit-especialidad/:id" element = {<IsPrivate><EditEspecialidad/></IsPrivate>}/>
