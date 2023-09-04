@@ -50,8 +50,8 @@ function AddEspecialidad(props) {
 
     try {
       const response = await uploadImageService(uploadData);
-
-      setEspecialidadPic(response.data.especialidadPic);
+      console.log(response.data.cloudinaryUrl + "CONSOLE CLOUDINARY")
+      setEspecialidadPic(response.data.cloudinaryUrl);
 
       setIsUploading(false); 
     } catch (error) {

@@ -20,10 +20,14 @@ function Navbar() {
       {isUserActive === true ? (
         <>
           <Link to="/menu/home">Home</Link>
-          <Link to="/user/myprofile">Mi perfil</Link>
-          <Link to="/esp/add-especialidad">Crea un plato</Link>
-
           <Link to="/menu/add-menu">Crea un menú</Link>
+
+          <Link to="/user/myprofile">Mi perfil</Link>
+
+          <Link to="/esp/add-especialidad">Crea un plato</Link>
+          <Link to="/esp/especialidades">Lista de especialidades</Link>
+
+          
 
 
           <button onClick={handleLogOut}>Cerrar sesión</button>

@@ -4,10 +4,9 @@ import service from "../services/service.config";
 import { AuthContext } from "../context/auth.context"
 import axios from "axios"
 
-function MyProfile() {
+function EspecialidadesList() {
 
   const [allEspecialidades, setAllEspecialidades] = useState()
-  const [allMenus, setAllMenus] = useState()
   const { activeUserId } = useContext(AuthContext);
   const navigate = useNavigate()
 
@@ -23,10 +22,6 @@ function MyProfile() {
       const especialidadesResponse = await service.get("/user/myprofile");
       console.log(especialidadesResponse.data);
       setAllEspecialidades(especialidadesResponse.data);
-
-      const menusResponse = await service.get("/menu/myprofile");
-      console.log(menusResponse.data);
-      setAllMenus(menusResponse.data);
     } catch (error) {
       console.log(error);
       navigate("/error");
@@ -44,13 +39,7 @@ function MyProfile() {
       console.error("Error al apuntarse a la especialidad", error);
     }
   };
-
   return (
-    <div>
-      <Link to={`/user/edit-profile/${activeUserId}`}>Edita tu perfil</Link>
-      {/* <AddEspecialidad getData={getData} setAllEspecialidades={setAllEspecialidades}/> */}
-      <br />
-      <hr />
       <div>
         <h3>Lista de Especialidades</h3>
         {allEspecialidades === undefined ? (
@@ -58,35 +47,21 @@ function MyProfile() {
         ) : (
           allEspecialidades.map((eachEspecialidad) => (
             <div key={eachEspecialidad._id}>
-              <Link to={`/esp/edit-especialidad/${eachEspecialidad._id}`}>
                 {eachEspecialidad.especialidadNombre}
-              </Link>
               <br />
               <img src={eachEspecialidad.especialidadPic} width="150" alt={eachEspecialidad.especialidadNombre} />
               <br />
-              {/* <Link to={`/esp/edit-especialidad/${eachEspecialidad._id}`}>{eachEspecialidad.creador[0].userName}</Link> */}
-            </div>
-          ))
-        )}
-      </div>
-      <hr />
-      <div>
-        <h3>Lista de Menús</h3>
-        {allMenus === undefined ? (
-          <h3>... buscando</h3>
-        ) : (
-          allMenus.map((eachMenu) => (
-            <div key={eachMenu._id}>
-              <Link to={`/esp/edit-menu/${eachMenu._id}`}>
-                {eachMenu.platoNombre.platoNombre}
-              </Link>
+              <p>{eachEspecialidad.especialidadPrecio}</p>
+              {/* <Link to={`/user/user-profile/${eachEspecialidad.creador}`}>{eachEspecialidad.creador}</Link> */}
               <br />
+              <button onClick={() => apuntarEspecialidad(eachEspecialidad._id)}>
+                Apuntarse a la especialidad
+              </button>
             </div>
           ))
         )}
       </div>
-    </div>
   );
-  }
+}
 
-export default MyProfile
+export default EspecialidadesList

@@ -15,6 +15,7 @@ import EditEspecialidad from './pages/EditEspecialidad'
 import EditProfile from './pages/EditProfile'
 
 import AddMenu from "./pages/AddMenu"
+import EspecialidadesList from './pages/EspecialidadesList'
 
 
 function App() {
@@ -36,7 +37,7 @@ function App() {
       <Route path="/menu/home" element = {<IsPrivate><Home/></IsPrivate>}/>
       <Route path="/menu/add-menu" element = {<IsPrivate><AddMenu/></IsPrivate>}/>
 
-
+      <Route path="/esp/especialidades" element = {<IsPrivate><EspecialidadesList/></IsPrivate>}/>
       <Route path="/esp/add-especialidad" element = {<IsPrivate><AddEspecialidad/></IsPrivate>}/>
       <Route path="/esp/edit-especialidad/:id" element = {<IsPrivate><EditEspecialidad/></IsPrivate>}/>
       
