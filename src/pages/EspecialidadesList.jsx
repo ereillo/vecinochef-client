@@ -29,10 +29,11 @@ function EspecialidadesList() {
   }
 
   const apuntarEspecialidad = async (especialidadId) => {
+
     console.log(especialidadId)
     try {
 
-      const response = await service.post(`/esp/especialidades/${especialidadId}`);
+      const response = await service.post(`/esp/especialidades/apuntar/${especialidadId}`);
       console.log(response.data.message); 
 
       getData();
@@ -40,6 +41,21 @@ function EspecialidadesList() {
       console.error("Error al apuntarse a la especialidad", error);
     }
   };
+
+  const desapuntarEspecialidad =async (especialidadId) => {
+
+    try {
+
+      const response = await service.post(`/esp/especialidades/desapuntar/${especialidadId}`);
+      console.log(response.data.message); 
+
+      getData();
+      
+    } catch (error) {
+      console.log("error al desapuntarte")
+      
+    }
+  }
 
   return (
     <div>
@@ -78,9 +94,20 @@ function EspecialidadesList() {
           
         </div>
 
-        <button onClick={() => apuntarEspecialidad(eachEspecialidad._id)}>
-          Apuntarse a la especialidad
-        </button>
+        {eachEspecialidad.participantes.some(
+              (participant) => participant._id === activeUserId
+            ) ? (
+              // Si el usuario está apuntado, muestra el botón de desapuntarse
+              <button onClick={() => desapuntarEspecialidad(eachEspecialidad._id)}>
+                Desapuntarse de la especialidad
+              </button>
+            ) : (
+              // Si el usuario no está apuntado, muestra el botón de apuntarse
+              <button onClick={() => apuntarEspecialidad(eachEspecialidad._id)}>
+                Apuntarse a la especialidad
+              </button>
+            )}
+
       </div>
       ))
     )}
