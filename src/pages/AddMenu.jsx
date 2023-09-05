@@ -6,11 +6,20 @@ import service from "../services/service.config";
 function AddMenu(props) {
   const navigate = useNavigate();
 
-  const [platoNombre, setPlatoNombre] = useState(""); // Cambiar platoNombre por platoId
-  const [postreNombre, setPostreNombre] = useState(""); // Cambiar postreNombre por postreId
-  const [weekDay, setWeekDay] = useState("");
+  const [platoNombre, setPlatoNombre] = useState("")
+  const [postreNombre, setPostreNombre] = useState("")
+  const [weekDay, setWeekDay] = useState("")
   const [menuPrecio, setMenuPrecio] = useState("");
-  const [specialidades, setSpecialidades] = useState([]); // Nuevo estado para almacenar especialidades
+  const [specialidades, setSpecialidades] = useState([])
+  const [daysOfWeekEnum] = useState([
+    "Lunes",
+    "Martes",
+    "Miércoles",
+    "Jueves",
+    "Viernes",
+    "Sábado",
+    "Domingo",
+  ]);
 
   const handlePlatoIdChange = (e) => setPlatoNombre(e.target.value);
   const handlePostreIdChange = (e) => setPostreNombre(e.target.value);
@@ -93,13 +102,14 @@ function AddMenu(props) {
         <br />
 
         <label htmlFor="weekDay">Día de la semana</label>
-        <input
-          type="text"
-          name="weekDay"
-          onChange={handleWeekDayChange}
-          value={weekDay}
-        />
-
+        <select name="weekDay" onChange={handleWeekDayChange} value={weekDay}>
+        <option value="">Seleccionar día</option>
+        {daysOfWeekEnum.map((day) => (
+          <option key = {day} value = {day}>
+            {day}
+          </option>
+        ))}
+        </select>
         <br />
         <button type="submit">Crear menú</button>
       </form>

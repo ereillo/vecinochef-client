@@ -64,7 +64,7 @@ function Home() {
     }
   };
 
- 
+  const customWeekDayOrder = ["Lunes", "Martes", "Miércoles", "Jueves", "Viernes", "Sábado", "Domingo"];
 
   return (
     <div>
@@ -73,7 +73,11 @@ function Home() {
         <h3>... buscando</h3>
       ) : (
         allMenus
-        .sort((a, b) => a.weekDay - b.weekDay)
+        .sort((a, b) => {
+          const dayAIndex = customWeekDayOrder.indexOf(a.weekDay);
+          const dayBIndex = customWeekDayOrder.indexOf(b.weekDay);
+          return dayAIndex - dayBIndex;
+        })
         .map((eachMenu) => (
           <div key={eachMenu._id}>
             <p>{eachMenu.weekDay}</p>
@@ -85,9 +89,9 @@ function Home() {
 
             <p>{eachMenu.menuPrecio} €</p>
 
-            {/* <Link to={`/user/user-profile/${eachMenu.creador._id}`}>
+            <Link to={`/user/user-profile/${eachMenu.creador._id}`}>
                     {eachMenu.creador.userName}
-                  </Link> */}
+                  </Link>
 
             <br />
             <div>
