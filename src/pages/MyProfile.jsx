@@ -1,24 +1,22 @@
 import { useContext, useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import service from "../services/service.config";
-import { AuthContext } from "../context/auth.context"
-import axios from "axios"
+import { AuthContext } from "../context/auth.context";
+import axios from "axios";
 
 function MyProfile() {
-
-  const [allEspecialidades, setAllEspecialidades] = useState()
-  const [allMenus, setAllMenus] = useState()
+  const [allEspecialidades, setAllEspecialidades] = useState();
+  const [allMenus, setAllMenus] = useState();
+  const [platosNombres, setPlatosNombres] = useState({})
+  const [postresNombres, setPostresNombres] = useState({})
   const { activeUserId } = useContext(AuthContext);
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
   useEffect(() => {
-
-    getData()
-
-  }, [])
+    getData();
+  }, []);
 
   const getData = async () => {
-
     try {
       const especialidadesResponse = await service.get("/user/myprofile");
       console.log(especialidadesResponse.data);
@@ -27,23 +25,23 @@ function MyProfile() {
       const menusResponse = await service.get("/menu/myprofile");
       console.log(menusResponse.data);
       setAllMenus(menusResponse.data);
+
+      const platosNombresObj = {};
+      especialidadesResponse.data.forEach((especialidad) => {
+        platosNombresObj[especialidad._id] = especialidad.especialidadNombre;
+      });
+      setPlatosNombres(platosNombresObj);
+
+      const postresNombresObj = {};
+      especialidadesResponse.data.forEach((especialidad) => {
+        postresNombresObj[especialidad._id] = especialidad.especialidadNombre;
+      });
+      setPostresNombres(postresNombresObj);
     } catch (error) {
       console.log(error);
       navigate("/error");
     }
   }
-
-  const apuntarEspecialidad = async (especialidadId) => {
-    try {
-
-      const response = await axios.post(`/esp/especialidades/${especialidadId}`);
-      console.log(response.data.message); 
-
-      getData();
-    } catch (error) {
-      console.error("Error al apuntarse a la especialidad", error);
-    }
-  };
 
   return (
     <div>
@@ -62,7 +60,11 @@ function MyProfile() {
                 {eachEspecialidad.especialidadNombre}
               </Link>
               <br />
-              <img src={eachEspecialidad.especialidadPic} width="150" alt={eachEspecialidad.especialidadNombre} />
+              <img
+                src={eachEspecialidad.especialidadPic}
+                width="150"
+                alt={eachEspecialidad.especialidadNombre}
+              />
               <br />
               {/* <Link to={`/esp/edit-especialidad/${eachEspecialidad._id}`}>{eachEspecialidad.creador[0].userName}</Link> */}
             </div>
@@ -77,9 +79,8 @@ function MyProfile() {
         ) : (
           allMenus.map((eachMenu) => (
             <div key={eachMenu._id}>
-              <Link to={`/esp/edit-menu/${eachMenu._id}`}>
-                {eachMenu.platoNombre.platoNombre}
-              </Link>
+              <Link to={`/menu/edit-menu/${eachMenu._id}`}>
+              {platosNombres[eachMenu.platoNombre]} y {postresNombres[eachMenu.postreNombre]}              </Link>
               <br />
             </div>
           ))
@@ -87,6 +88,6 @@ function MyProfile() {
       </div>
     </div>
   );
-  }
+}
 
-export default MyProfile
+export default MyProfile;
