@@ -2,6 +2,9 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import service from "../services/service.config";
 import { uploadImageService } from "../services/service.upload";
+import Form from 'react-bootstrap/Form'
+import Button from 'react-bootstrap/Button';
+
 
 function AddEspecialidad(props) {
   const navigate = useNavigate();
@@ -64,7 +67,7 @@ function AddEspecialidad(props) {
       <h3>Crear plato</h3>
 
       <form onSubmit={handleSubmit}>
-        <label htmlFor="especialidadNombre">Nombre</label>
+        <Form.Label htmlFor="especialidadNombre" style={{margin: "10px"}}>Nombre</Form.Label>
         <input
           type="text"
           name="especialidadNombre"
@@ -74,7 +77,7 @@ function AddEspecialidad(props) {
 
         <br />
 
-        <label htmlFor="especialidadIngredientes">Ingredientes</label>
+        <Form.Label htmlFor="especialidadIngredientes">Ingredientes</Form.Label>
         <input
           type="text"
           name="especialidadIngredientes"
@@ -84,7 +87,7 @@ function AddEspecialidad(props) {
 
         <br />
 
-        <label htmlFor="especialidadPrecio">Precio</label>
+        <Form.Label htmlFor="especialidadPrecio">Precio</Form.Label>
         <input
           type="text"
           name="especialidadPrecio"
@@ -95,7 +98,7 @@ function AddEspecialidad(props) {
         <br />
     
         <div>
-          <label>Añadir foto: </label>
+          <Form.Label></Form.Label>
           <input
             type="file"
             name="image"
@@ -113,7 +116,7 @@ function AddEspecialidad(props) {
 
          <br />
 
-         <label htmlFor="isEspecialidad">¿Es una especialidad?</label>
+         <Form.Label htmlFor="isEspecialidad">¿Es una especialidad?</Form.Label>
          <input
          type="checkbox"
          name="isEspecialidad"
@@ -121,7 +124,9 @@ function AddEspecialidad(props) {
          checked={isEspecialidad}
          />
 
-        <button type="submit">Crear plato</button>
+         <br />
+
+         <Button variant="outline-success" type="submit">Crear plato</Button>
       </form>
     </div>
   );

@@ -1,9 +1,8 @@
 import { useContext, useEffect, useState } from "react";
-import AddEspecialidad from "../pages/AddEspecialidad";
-import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
 import service from "../services/service.config";
 import { AuthContext } from "../context/auth.context";
+import Button from 'react-bootstrap/Button';
 
 function Home() {
   const [allEspecialidades, setAllEspecialidades] = useState();
@@ -108,15 +107,18 @@ function Home() {
             {eachMenu.participantes.some(
               (participant) => participant._id === activeUserId
             ) ? (
-              
-              <button onClick={() => desapuntarMenu(eachMenu._id)}>
+              <div>
+              <Button variant="danger" onClick={() => desapuntarMenu(eachMenu._id)} >
                 -
-              </button>
+              </Button>{' '}
+              </div>
             ) : (
               
-              <button onClick={() => apuntarMenu(eachMenu._id)}>
+              <div>
+              <Button variant="success" onClick={() => apuntarMenu(eachMenu._id)}>
                 +
-              </button>
+              </Button>{' '}
+              </div>
             )}
           </div>
         ))

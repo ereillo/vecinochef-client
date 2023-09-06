@@ -3,6 +3,10 @@ import { Link, useNavigate } from "react-router-dom";
 import service from "../services/service.config";
 import { AuthContext } from "../context/auth.context";
 import MenusApuntado from "../components/MenusApuntado";
+import Button from 'react-bootstrap/Button';
+import EspecialidadApuntadas from "../components/EspecialidadApuntadas";
+import EspecialidadesCreadas from "../components/EspecialidadesCreadas";
+
 
 
 function MyProfile() {
@@ -50,14 +54,23 @@ function MyProfile() {
 
   return (
     <div>
-      <Link to={`/user/edit-profile/${activeUserId}`}><button>Edita tu perfil</button></Link>
+      <Link to={`/user/edit-profile/${activeUserId}`}>
+        <div>
+        <Button variant="outline-primary">Edita tu perfil</Button>{' '}
+        </div>
+      </Link>
       {/* <AddEspecialidad getData={getData} setAllEspecialidades={setAllEspecialidades}/> */}
       <br />
       <hr />
-      <div>
+      <EspecialidadesCreadas/>
+     {/* <div>
         <h3>Tus especialidades</h3>
 
-          <Link to="/esp/add-especialidad"><button>Crear nuevo plato</button></Link>
+          <Link to="/esp/add-especialidad">
+            <div>
+            <Button variant="outline-success">Crear nuevo plato</Button>
+            </div>
+          </Link>
         {allEspecialidades === undefined ? (
           <h3>... buscando</h3>
         ) : (
@@ -74,16 +87,18 @@ function MyProfile() {
               />
               <br />
               {/* <Link to={`/esp/edit-especialidad/${eachEspecialidad._id}`}>{eachEspecialidad.creador[0].userName}</Link> */}
-            </div>
-          ))
-        )}
-      </div>
+            {/* </div> */}
+          {/* )) */}
+        {/* )} */}
+      {/* </div>  */}
       <hr />
 
       <div>
         <h3>Tus menús</h3>
         <Link to="/menu/add-menu">
-          <button>Crear nuevo menú</button>
+          <div>
+        <Button variant="outline-success">Crear nuevo menú</Button>
+        </div>
           </Link>
         {allMenus === undefined ? (
           <h3>... buscando</h3>
@@ -99,16 +114,11 @@ function MyProfile() {
       </div>
 
       <div>
-      <MenusApuntado
-    allMenus={allMenus}
-    platosNombres={platosNombres}
-    postresNombres={postresNombres}
-    userId={activeUserId} 
-/>
+      <MenusApuntado/>
 </div>
 
       <div>
-        <h3>Especialidades encargadas</h3>
+        <EspecialidadApuntadas/>
       </div>
     </div>
   );

@@ -1,8 +1,11 @@
 import React, { useState, useEffect } from "react";
 import service from "../services/service.config";
 
-function MenusApuntado() {
-  const [menusUsuario, setMenusUsuario] = useState([]);
+import React from 'react'
+
+function MenusCreados() {
+
+    const [menusUsuario, setMenusUsuario] = useState([]);
   const [platosNombres, setPlatosNombres] = useState({});
   const [postresNombres, setPostresNombres] = useState({});
 
@@ -12,7 +15,7 @@ function MenusApuntado() {
 
   const getData = async () => {
     try {
-      const response = await service.get("/menu/menuApuntado/myprofile");
+      const response = await service.get("/menu/menuCreado/myprofile");
       console.log(response.data);
       setMenusUsuario(response.data);
 
@@ -30,27 +33,11 @@ function MenusApuntado() {
       setPostresNombres(postresNombresObj);
     } catch (error) {
       console.log(error);
-      // Manejar errores según gica (por ejemplo, redreccionar a una página error)
     }
   };
-
   return (
-    <div>
-      <h3>Menús a los que estás apuntado</h3>
-      {menusUsuario.length === 0 ? (
-        <p>No estás apuntado a ningún menú.</p>
-      ) : (
-        menusUsuario.map((menu) => (
-          <div key={menu._id}>
-            <li>
-              {platosNombres[menu.platoNombre]} y {postresNombres[menu.postreNombre]}
-            </li>
-            <br />
-          </div>
-        ))
-      )}
-    </div>
-  );
+    <div>MenusCreados</div>
+  )
 }
 
-export default MenusApuntado;
+export default MenusCreados

@@ -2,6 +2,8 @@ import { useContext, useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import service from "../services/service.config";
 import { AuthContext } from "../context/auth.context"
+import Button from 'react-bootstrap/Button';
+
 
 function EspecialidadesList() {
 
@@ -98,14 +100,14 @@ function EspecialidadesList() {
               (participant) => participant._id === activeUserId
             ) ? (
               // Si el usuario está apuntado, muestra el botón de desapuntarse
-              <button onClick={() => desapuntarEspecialidad(eachEspecialidad._id)}>
+              <Button variant="danger" onClick={() => desapuntarEspecialidad(eachEspecialidad._id)}>
                 -
-              </button>
+              </Button>
             ) : (
               // Si el usuario no está apuntado, muestra el botón de apuntarse
-              <button onClick={() => apuntarEspecialidad(eachEspecialidad._id)}>
+              <Button variant="success" onClick={() => apuntarEspecialidad(eachEspecialidad._id)}>
                 +
-              </button>
+              </Button>
             )}
 
       </div>

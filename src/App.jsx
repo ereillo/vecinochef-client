@@ -8,6 +8,8 @@ import MyProfile from "./pages/MyProfile"
 import Error from "./pages/Error"
 import NotFound from "./pages/NotFound"
 import Home from './pages/Home'
+import 'bootstrap/dist/css/bootstrap.min.css';
+
 
 import IsPrivate from './components/IsPrivate'
 import AddEspecialidad from './pages/AddEspecialidad'
