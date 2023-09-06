@@ -68,9 +68,9 @@ function EspecialidadesList() {
       <div key={eachEspecialidad._id} style={{ margin: "50px" }}>
         {eachEspecialidad.especialidadNombre}
         <br />
-        <Link to={`/user/user-profile/${eachEspecialidad.creador._id}`}>
-          Vecinochef: {eachEspecialidad.creador.userName}
-        </Link>
+        <p> Vecinochef: <Link to={`/user/user-profile/${eachEspecialidad.creador._id}`}>
+          {eachEspecialidad.creador.userName}
+        </Link> </p>
         <br />
         <img
           src={eachEspecialidad.especialidadPic}
@@ -99,12 +99,12 @@ function EspecialidadesList() {
             ) ? (
               // Si el usuario está apuntado, muestra el botón de desapuntarse
               <button onClick={() => desapuntarEspecialidad(eachEspecialidad._id)}>
-                Desapuntarse de la especialidad
+                -
               </button>
             ) : (
               // Si el usuario no está apuntado, muestra el botón de apuntarse
               <button onClick={() => apuntarEspecialidad(eachEspecialidad._id)}>
-                Apuntarse a la especialidad
+                +
               </button>
             )}
 

@@ -82,16 +82,17 @@ function Home() {
           <div key={eachMenu._id}>
             <p>{eachMenu.weekDay}</p>
 
-            <Link to={`/menu/edit-menu/${eachMenu._id}`}>
+            <h3>
               {platosNombres[eachMenu.platoNombre]} y{" "}
               {postresNombres[eachMenu.postreNombre]}{" "}
-            </Link>
+            </h3>
 
             <p>{eachMenu.menuPrecio} €</p>
 
-            <Link to={`/user/user-profile/${eachMenu.creador._id}`}>
+             <p>Vecinochef: <Link to={`/user/user-profile/${eachMenu.creador._id}`}>
                     {eachMenu.creador.userName}
-                  </Link>
+                  </Link></p>
+            
 
             <br />
             <div>
@@ -109,12 +110,12 @@ function Home() {
             ) ? (
               
               <button onClick={() => desapuntarMenu(eachMenu._id)}>
-                Desapuntarse del menú
+                -
               </button>
             ) : (
               
               <button onClick={() => apuntarMenu(eachMenu._id)}>
-                Apuntarse al menú
+                +
               </button>
             )}
           </div>

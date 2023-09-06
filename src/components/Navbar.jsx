@@ -19,14 +19,12 @@ function Navbar() {
     <div>
       {isUserActive === true ? (
         <>
-          <Link to="/menu/home">Home</Link>
-          <Link to="/menu/add-menu">Crea un menú</Link>
-
-          <Link to="/user/myprofile">Mi perfil</Link>
-
-          <Link to="/esp/add-especialidad">Crea un plato</Link>
+          <Link to="/menu/home">Menús de la semana</Link>
+  
           <Link to="/esp/especialidades">Lista de especialidades</Link>
 
+         
+          <Link to="/user/myprofile">Mi perfil</Link>
           
 
 

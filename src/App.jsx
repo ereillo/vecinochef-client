@@ -17,6 +17,7 @@ import EditProfile from './pages/EditProfile'
 import AddMenu from "./pages/AddMenu"
 import EspecialidadesList from './pages/EspecialidadesList'
 import EditMenu from './pages/EditMenu'
+import UserProfile from './pages/UserProfile'
 
 
 function App() {
@@ -34,6 +35,8 @@ function App() {
 
       <Route path="/user/myprofile" element= {<IsPrivate><MyProfile/></IsPrivate>}/>
       <Route path="/user/edit-profile/:userId" element= {<IsPrivate><EditProfile/></IsPrivate>}/>
+      <Route path="/user/user-profile/:userId" element= {<IsPrivate><UserProfile/></IsPrivate>}/>
+
 
       <Route path="/menu/home" element = {<IsPrivate><Home/></IsPrivate>}/>
       <Route path="/menu/add-menu" element = {<IsPrivate><AddMenu/></IsPrivate>}/>

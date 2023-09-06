@@ -2,7 +2,7 @@ import { useContext, useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import service from "../services/service.config";
 import { AuthContext } from "../context/auth.context";
-import axios from "axios";
+
 
 function MyProfile() {
   const [allEspecialidades, setAllEspecialidades] = useState();
@@ -45,12 +45,14 @@ function MyProfile() {
 
   return (
     <div>
-      <Link to={`/user/edit-profile/${activeUserId}`}>Edita tu perfil</Link>
+      <Link to={`/user/edit-profile/${activeUserId}`}><button>Edita tu perfil</button></Link>
       {/* <AddEspecialidad getData={getData} setAllEspecialidades={setAllEspecialidades}/> */}
       <br />
       <hr />
       <div>
         <h3>Lista de Especialidades</h3>
+
+          <Link to="/esp/add-especialidad"><button>Crear nuevo plato</button></Link>
         {allEspecialidades === undefined ? (
           <h3>... buscando</h3>
         ) : (
@@ -74,6 +76,9 @@ function MyProfile() {
       <hr />
       <div>
         <h3>Lista de Menús</h3>
+        <Link to="/menu/add-menu">
+          <button>Crear nuevo menú</button>
+          </Link>
         {allMenus === undefined ? (
           <h3>... buscando</h3>
         ) : (
