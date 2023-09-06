@@ -30,7 +30,6 @@ function MenusApuntado() {
       setPostresNombres(postresNombresObj);
     } catch (error) {
       console.log(error);
-      // Manejar errores según gica (por ejemplo, redreccionar a una página error)
     }
   };
 
@@ -38,7 +37,7 @@ function MenusApuntado() {
     <div>
       <h3>Menús a los que estás apuntado</h3>
       {menusUsuario.length === 0 ? (
-        <p>No estás apuntado a ningún menú.</p>
+        <p>No estás apuntado a ningún menú</p>
       ) : (
         menusUsuario.map((menu) => (
           <div key={menu._id}>

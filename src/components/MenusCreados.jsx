@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from "react";
 import service from "../services/service.config";
+import { Link } from "react-router-dom";
+import Button from 'react-bootstrap/Button';
 
-import React from 'react'
 
 function MenusCreados() {
 
@@ -36,7 +37,26 @@ function MenusCreados() {
     }
   };
   return (
-    <div>MenusCreados</div>
+    <div>
+    <h3>Menús creados por ti</h3>
+    <Link to="/menu/add-menu">
+          <div>
+        <Button variant="outline-success">Crear nuevo menú</Button>
+        </div>
+          </Link>
+    {menusUsuario.length === 0 ? (
+      <p>No has creado ningún menú</p>
+    ) : (
+      menusUsuario.map((menu) => (
+        <div key={menu._id}>
+         <Link to={`/menu/edit-menu/${menu._id}`}>
+          {platosNombres[menu.platoNombre]} y {postresNombres[menu.postreNombre]}
+          </Link>
+          <br />
+        </div>
+      ))
+    )}
+  </div>
   )
 }
 

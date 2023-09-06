@@ -6,6 +6,7 @@ import MenusApuntado from "../components/MenusApuntado";
 import Button from 'react-bootstrap/Button';
 import EspecialidadApuntadas from "../components/EspecialidadApuntadas";
 import EspecialidadesCreadas from "../components/EspecialidadesCreadas";
+import MenusCreados from "../components/MenusCreados";
 
 
 
@@ -56,70 +57,27 @@ function MyProfile() {
     <div>
       <Link to={`/user/edit-profile/${activeUserId}`}>
         <div>
-        <Button variant="outline-primary">Edita tu perfil</Button>{' '}
+        <Button variant="outline-primary"style={{width: "100px"}}>Edita tu perfil</Button>{' '}
         </div>
       </Link>
-      {/* <AddEspecialidad getData={getData} setAllEspecialidades={setAllEspecialidades}/> */}
       <br />
-      <hr />
-      <EspecialidadesCreadas/>
-     {/* <div>
-        <h3>Tus especialidades</h3>
-
-          <Link to="/esp/add-especialidad">
-            <div>
-            <Button variant="outline-success">Crear nuevo plato</Button>
-            </div>
-          </Link>
-        {allEspecialidades === undefined ? (
-          <h3>... buscando</h3>
-        ) : (
-          allEspecialidades.map((eachEspecialidad) => (
-            <div key={eachEspecialidad._id}>
-              <Link to={`/esp/edit-especialidad/${eachEspecialidad._id}`}>
-                {eachEspecialidad.especialidadNombre}
-              </Link>
-              <br />
-              <img
-                src={eachEspecialidad.especialidadPic}
-                width="150"
-                alt={eachEspecialidad.especialidadNombre}
-              />
-              <br />
-              {/* <Link to={`/esp/edit-especialidad/${eachEspecialidad._id}`}>{eachEspecialidad.creador[0].userName}</Link> */}
-            {/* </div> */}
-          {/* )) */}
-        {/* )} */}
-      {/* </div>  */}
-      <hr />
-
-      <div>
-        <h3>Tus menús</h3>
-        <Link to="/menu/add-menu">
+      <Link to="/esp/add-especialidad"><Button variant="outline-success">Crear nuevo plato</Button></Link>
+      <Link to="/menu/add-menu">
           <div>
-        <Button variant="outline-success">Crear nuevo menú</Button>
+        <Button variant="outline-success" style={{width: "100px"}}>Crear nuevo menú</Button>
         </div>
           </Link>
-        {allMenus === undefined ? (
-          <h3>... buscando</h3>
-        ) : (
-          allMenus.map((eachMenu) => (
-            <div key={eachMenu._id}>
-              <Link to={`/menu/edit-menu/${eachMenu._id}`}>
-              {platosNombres[eachMenu.platoNombre]} y {postresNombres[eachMenu.postreNombre]}              </Link>
-              <br />
-            </div>
-          ))
-        )}
-      </div>
-
-      <div>
+      <hr />
+      <EspecialidadesCreadas/>
+      <hr />
+      <br />
+      <MenusCreados/>
+      <hr />
+      <br />
       <MenusApuntado/>
-</div>
-
-      <div>
+      <hr />
+      <br />
         <EspecialidadApuntadas/>
-      </div>
     </div>
   );
 }
