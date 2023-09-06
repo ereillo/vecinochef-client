@@ -9,7 +9,7 @@ import Error from "./pages/Error"
 import NotFound from "./pages/NotFound"
 import Home from './pages/Home'
 
-import IsPrivate from './components/isPrivate'
+import IsPrivate from './components/IsPrivate'
 import AddEspecialidad from './pages/AddEspecialidad'
 import EditEspecialidad from './pages/EditEspecialidad'
 import EditProfile from './pages/EditProfile'
