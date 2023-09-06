@@ -1,38 +1,39 @@
-import { useContext, useEffect, useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { Link, useParams, useNavigate } from "react-router-dom";
 import service from "../services/service.config";
-import { AuthContext } from "../context/auth.context";
 
 function UserProfile() {
-  const [allEspecialidades, setAllEspecialidades] = useState();
-  const [allMenus, setAllMenus] = useState();
-  const [platosNombres, setPlatosNombres] = useState({})
-  const [postresNombres, setPostresNombres] = useState({})
-  
+  const { userId } = useParams() 
+  const [allEspecialidades, setAllEspecialidades] = useState([]);
+  const [allMenus, setAllMenus] = useState([]);
+  const [platosNombres, setPlatosNombres] = useState({});
+  const [postresNombres, setPostresNombres] = useState({});
+
   const navigate = useNavigate();
 
   useEffect(() => {
-    getData();
-  }, []);
+    if (userId) {
+      getData(userId);
+    }
+  }, [userId]);
 
-  const getData = async () => {
+  const getData = async (userId) => {
+
+    console.log(userId)
     try {
-      const especialidadesResponse = await service.get("/user/user-profile");
-      console.log(especialidadesResponse.data);
-      setAllEspecialidades(especialidadesResponse.data);
-
-      const menusResponse = await service.get("/user/user-profile");
-      console.log(menusResponse.data);
-      setAllMenus(menusResponse.data);
+      const response = await service.get(`/user/user-profile/${userId}`);
+      console.log(response.data);
+      setAllEspecialidades(response.data.especialidades);
+      setAllMenus(response.data.menu);
 
       const platosNombresObj = {};
-      especialidadesResponse.data.forEach((especialidad) => {
+      response.data.especialidades.forEach((especialidad) => {
         platosNombresObj[especialidad._id] = especialidad.especialidadNombre;
       });
       setPlatosNombres(platosNombresObj);
 
       const postresNombresObj = {};
-      especialidadesResponse.data.forEach((especialidad) => {
+      response.data.forEach((especialidad) => {
         postresNombresObj[especialidad._id] = especialidad.especialidadNombre;
       });
       setPostresNombres(postresNombresObj);
