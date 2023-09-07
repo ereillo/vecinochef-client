@@ -1,4 +1,4 @@
-import { useContext, useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import service from "../services/service.config";
 import { AuthContext } from "../context/auth.context";
@@ -18,7 +18,9 @@ function EspecialidadesList() {
 
   const getData = async () => {
     try {
-      const especialidadesResponse = await service.get("/esp/especialidades");
+      const especialidadesResponse = await service.get(
+        "/esp/espCreada/allEspecialidades"
+      );
       console.log(especialidadesResponse.data);
       setAllEspecialidades(especialidadesResponse.data);
     } catch (error) {
@@ -27,8 +29,11 @@ function EspecialidadesList() {
     }
   };
 
+  const isUserApuntado = (especialidad) => {
+    return especialidad.participantes.includes(activeUserId);
+  };
+
   const apuntarEspecialidad = async (especialidadId) => {
-    console.log(especialidadId);
     try {
       const response = await service.post(
         `/esp/especialidades/apuntar/${especialidadId}`
@@ -53,84 +58,96 @@ function EspecialidadesList() {
   };
 
   return (
-    <div style={{marginTop: "30px"}}>
-      <h2 style={{marginBottom: "30px"}} >Lista de Especialidades</h2>
-      <Row xs={1} md={2} lg={4} className="justify-content-center">
+    <div style={{ marginTop: "30px" }}>
+      <h2>Lista de Especialidades</h2>
+      <Row xs={1} md={3} className="g-4 justify-content-center">
         {allEspecialidades.length === 0 ? (
           <h3>... buscando</h3>
         ) : (
           allEspecialidades.map((eachEspecialidad) => (
-            <Col
-              key={eachEspecialidad._id}
-              style={{ marginBottom: "20px" }}
-              className="d-flex justify-content-center"
-            >
-              <Card style={{ maxWidth: "15rem" }}>
-                <Card.Img
-                  variant="top"
-                  src={eachEspecialidad.especialidadPic}
-                  alt={eachEspecialidad.especialidadNombre}
-                />
-                <Card.Body style={{ padding: "1rem" }}>
-                  <Card.Title>{eachEspecialidad.especialidadNombre}</Card.Title>
-                  <Card.Text>
-                    Precio: {eachEspecialidad.especialidadPrecio}€
-                  </Card.Text>
-                  <Card.Text>
-                    Vecinochef:{" "}
-                    {eachEspecialidad.creador._id === activeUserId ? (
-                      <span>{eachEspecialidad.creador.userName}</span>
-                    ) : (
-                      <Link
-                        to={`/user/user-profile/${eachEspecialidad.creador._id}`}
-                      >
-                        {eachEspecialidad.creador.userName}
-                      </Link>
+            <Col key={eachEspecialidad._id}>
+              <div className="mx-auto">
+                <Card
+                  className="mb-3"
+                  style={{
+                    boxShadow: "0 4px 8px rgba(0,0,0,0.2)",
+                    maxWidth: "18rem",
+                    marginTop: "20px",
+                    marginLeft: "70px",
+                  }}
+                >
+                  <Card.Img
+                    variant="top"
+                    src={eachEspecialidad.especialidadPic}
+                    alt={eachEspecialidad.especialidadNombre}
+                  />
+                  <Card.Body>
+                    <Card.Title className="h5">
+                      {eachEspecialidad.especialidadNombre}
+                    </Card.Title>
+                    <Card.Text className="mb-2">
+                      Precio: {eachEspecialidad.especialidadPrecio} €
+                    </Card.Text>
+                    <Card.Text className="mb-2">
+                      Vecinochef:{" "}
+                      {eachEspecialidad.creador._id === activeUserId ? (
+                        <>{eachEspecialidad.creador.userName}</>
+                      ) : (
+                        <Link
+                          to={`/user/user-profile/${eachEspecialidad.creador._id}`}
+                        >
+                          {eachEspecialidad.creador.userName}
+                        </Link>
+                      )}
+                    </Card.Text>
+                    <Card.Text className="mb-2">
+                      <ul className="list-unstyled">
+                        {eachEspecialidad.participantes.map((eachParticipante) => (
+                          <li key={eachParticipante}>
+                            {eachParticipante._id === activeUserId ? (
+                              <>{eachParticipante.userName}</>
+                            ) : (
+                              <Link
+                                to={`/user/user-profile/${eachParticipante._id}`}
+                              >
+                                {eachParticipante.userName}
+                              </Link>
+                            )}
+                          </li>
+                        ))}
+                      </ul>
+                    </Card.Text>
+                    {eachEspecialidad.creador._id !== activeUserId && (
+                      // Verifica si el creador no es el usuario logeado
+                      isUserApuntado(eachEspecialidad) ? (
+                        <Button
+                          variant="danger"
+                          onClick={() =>
+                            desapuntarEspecialidad(eachEspecialidad._id)
+                          }
+                        >
+                          Desapuntarse
+                        </Button>
+                      ) : (
+                        <Button
+                          variant="success"
+                          onClick={() => apuntarEspecialidad(eachEspecialidad._id)}
+                        >
+                          Apuntarse
+                        </Button>
+                      )
                     )}
-                  </Card.Text>
-                  <Card.Text>
-                    Vecinos apuntados:
-                    <ul className="list-unstyled">
-                      {eachEspecialidad.participantes.map((eachParticipante) => (
-                        <li key={eachParticipante._id}>
-                          {eachParticipante._id === activeUserId ? (
-                            <span>{eachParticipante.userName}</span>
-                          ) : (
-                            <Link
-                              to={`/user/user-profile/${eachParticipante._id}`}
-                            >
-                              {eachParticipante.userName}
-                            </Link>
-                          )}
-                        </li>
-                      ))}
-                    </ul>
-                  </Card.Text>
-                  {eachEspecialidad.participantes.some(
-                    (participant) => participant._id === activeUserId
-                  ) ? (
-                    <Button
-                      variant="danger"
-                      onClick={() => desapuntarEspecialidad(eachEspecialidad._id)}
-                    >
-                      Desapuntarse
-                    </Button>
-                  ) : (
-                    <Button
-                      variant="success"
-                      onClick={() => apuntarEspecialidad(eachEspecialidad._id)}
-                    >
-                      Apuntarse
-                    </Button>
-                  )}
-                </Card.Body>
-              </Card>
+                  </Card.Body>
+                </Card>
+              </div>
             </Col>
           ))
         )}
       </Row>
     </div>
   );
+  
+  
 }
 
 export default EspecialidadesList;

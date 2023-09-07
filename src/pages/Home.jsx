@@ -150,22 +150,25 @@ function Home() {
                           ))}
                         </ul>
                       </Card.Text>
-                      {eachMenu.participantes.some(
-                        (participant) => participant._id === activeUserId
-                      ) ? (
-                        <Button
-                          variant="danger"
-                          onClick={() => desapuntarMenu(eachMenu._id)}
-                        >
-                          Desapuntarse
-                        </Button>
-                      ) : (
-                        <Button
-                          variant="success"
-                          onClick={() => apuntarMenu(eachMenu._id)}
-                        >
-                          Apuntarse
-                        </Button>
+                      {eachMenu.creador._id !== activeUserId && (
+                        // Verifica si el creador no es el usuario logeado
+                        eachMenu.participantes.some(
+                          (participant) => participant._id === activeUserId
+                        ) ? (
+                          <Button
+                            variant="danger"
+                            onClick={() => desapuntarMenu(eachMenu._id)}
+                          >
+                            Desapuntarse
+                          </Button>
+                        ) : (
+                          <Button
+                            variant="success"
+                            onClick={() => apuntarMenu(eachMenu._id)}
+                          >
+                            Apuntarse
+                          </Button>
+                        )
                       )}
                     </Card.Body>
                   </Card>
@@ -176,6 +179,7 @@ function Home() {
       </Row>
     </div>
   );
+  
 }
 
 export default Home;
