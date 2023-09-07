@@ -235,7 +235,7 @@ function EditMenu() {
         </Card.Title>
         <Form onSubmit={handleSubmit}>
           <Form.Group className="mb-3">
-            <Form.Label htmlFor="platoNombre">Plato principal</Form.Label>
+            <Form.Label htmlFor="platoNombre" style={{ margin: "10px", fontWeight: 'bold' }}>Plato principal</Form.Label>
             <Form.Select
               name="platoNombre"
               onChange={handlePlatoNombreChange}
@@ -252,7 +252,7 @@ function EditMenu() {
           </Form.Group>
 
           <Form.Group className="mb-3">
-            <Form.Label htmlFor="postreNombre">Postre</Form.Label>
+            <Form.Label htmlFor="postreNombre" style={{ margin: "10px", fontWeight: 'bold' }}>Postre</Form.Label>
             <Form.Select
               name="postreNombre"
               onChange={handlePostreNombreChange}
@@ -272,7 +272,7 @@ function EditMenu() {
           </Form.Group>
 
           <Form.Group className="mb-3">
-            <Form.Label htmlFor="menuPrecio">Precio:</Form.Label>
+            <Form.Label htmlFor="menuPrecio" style={{ margin: "10px", fontWeight: 'bold' }}>Precio:</Form.Label>
             <Form.Control
               type="text"
               name="menuPrecio"
@@ -283,7 +283,7 @@ function EditMenu() {
           </Form.Group>
 
           <Form.Group className="mb-3">
-            <Form.Label htmlFor="weekDay">Día de la semana</Form.Label>
+            <Form.Label htmlFor="weekDay" style={{ margin: "10px", fontWeight: 'bold' }}>Día de la semana</Form.Label>
             <Form.Control
               type="text"
               name="weekDay"
