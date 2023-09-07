@@ -63,19 +63,17 @@ function EspecialidadesList() {
             {eachEspecialidad.especialidadNombre}
             <br />
             <div>
-              Vecinochef:
-              <p key={eachEspecialidad.creador._id}>
-                {eachEspecialidad.creador._id === activeUserId ? (
-                  <p>{eachEspecialidad.creador.userName}</p>
-                ) : (
-                  <Link
-                    to={`/user/user-profile/${eachEspecialidad.creador._id}`}
-                  >
-                    {eachEspecialidad.creador.userName}
-                  </Link>
-                )}
-              </p>
-            </div>
+                Vecinochef:
+                <p key={eachEspecialidad.creador._id}>
+                  {eachEspecialidad.creador._id === activeUserId ? (
+                    <p>{eachEspecialidad.creador.userName}</p>
+                  ) : (
+                    <Link to={`/user/user-profile/${eachEspecialidad.creador._id}`}>
+                      {eachEspecialidad.creador.userName}
+                    </Link>
+                  )}
+                </p>
+              </div>
             <br />
             <img
               src={eachEspecialidad.especialidadPic}
@@ -85,21 +83,21 @@ function EspecialidadesList() {
             />
             <br />
             <p>Precio: {eachEspecialidad.especialidadPrecio}€</p>
-
+            
             <div>
-              Vecinos apuntados:
-              {eachEspecialidad.participantes.map((eachParticipante) => (
-                <li key={eachParticipante._id}>
-                  {eachParticipante._id === activeUserId ? (
-                    <>{eachParticipante.userName}</>
-                  ) : (
-                    <Link to={`/user/user-profile/${eachParticipante._id}`}>
-                      {eachParticipante.userName}
-                    </Link>
-                  )}
-                </li>
-              ))}
-            </div>
+                Vecinos apuntados:
+                {eachEspecialidad.participantes.map((eachParticipante) => (
+                  <li key={eachParticipante._id}>
+                    {eachParticipante._id === activeUserId ? (
+                      <>{eachParticipante.userName}</>
+                    ) : (
+                      <Link to={`/user/user-profile/${eachParticipante._id}`}>
+                        {eachParticipante.userName}
+                      </Link>
+                    )}
+                  </li>
+                ))}
+              </div>
 
             {eachEspecialidad.participantes.some(
               (participant) => participant._id === activeUserId

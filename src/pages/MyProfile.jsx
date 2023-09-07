@@ -16,6 +16,8 @@ function MyProfile() {
   const [platosNombres, setPlatosNombres] = useState({})
   const [postresNombres, setPostresNombres] = useState({})
   const { activeUserId, activeUserName } = useContext(AuthContext);
+  const [userData, setUserData] = useState({})
+
   
   const navigate = useNavigate();
 
@@ -28,6 +30,7 @@ function MyProfile() {
       const especialidadesResponse = await service.get("/user/myprofile");
       console.log(especialidadesResponse.data);
       setAllEspecialidades(especialidadesResponse.data);
+      
 
       const menusResponse = await service.get("/menu/myprofile");
       console.log(menusResponse.data);
