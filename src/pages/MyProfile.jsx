@@ -2,16 +2,21 @@ import { useContext, useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import service from "../services/service.config";
 import { AuthContext } from "../context/auth.context";
+import MenusApuntado from "../components/MenusApuntado";
 import Button from 'react-bootstrap/Button';
+import EspecialidadApuntadas from "../components/EspecialidadApuntadas";
 import EspecialidadesCreadas from "../components/EspecialidadesCreadas";
 import MenusCreados from "../components/MenusCreados";
+
+
 
 function MyProfile() {
   const [allEspecialidades, setAllEspecialidades] = useState();
   const [allMenus, setAllMenus] = useState(null);
-  const [platosNombres, setPlatosNombres] = useState({});
-  const [postresNombres, setPostresNombres] = useState({});
+  const [platosNombres, setPlatosNombres] = useState({})
+  const [postresNombres, setPostresNombres] = useState({})
   const { activeUserId, activeUserName } = useContext(AuthContext);
+  
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -49,36 +54,32 @@ function MyProfile() {
     return <h3>...probando</h3>
   }
 
-  const primerMenu = allMenus[0];
-  const nombreDelCreador = primerMenu ? primerMenu.creador.userName : "Ningún menú creado";
-
   return (
     <div>
-      <h2>¡Hola, {nombreDelCreador}!</h2>
-      
+      <h2>Tu página de perfil</h2>
       <Link to={`/user/edit-profile/${activeUserId}`}>
         <div>
-          <Button variant="outline-primary" style={{ width: "100px" }}>
-            Edita tu perfil
-          </Button>{" "}
+        <Button variant="outline-primary"style={{width: "100px"}}>Edita tu perfil</Button>{' '}
         </div>
       </Link>
       <br />
-      <Link to="/esp/add-especialidad">
-        <Button variant="outline-success">Crear nuevo plato</Button>
-      </Link>
+      <Link to="/esp/add-especialidad"><Button variant="outline-success">Crear nuevo plato</Button></Link>
       <Link to="/menu/add-menu">
-        <div>
-          <Button variant="outline-success" style={{ width: "100px" }}>
-            Crear nuevo menú
-          </Button>
+          <div>
+        <Button variant="outline-success" style={{width: "100px"}}>Crear nuevo menú</Button>
         </div>
-      </Link>
+          </Link>
       <hr />
-      <EspecialidadesCreadas />
+      <EspecialidadesCreadas/>
       <hr />
       <br />
-      <MenusCreados />
+      <MenusCreados/>
+      <hr />
+      <br />
+      <MenusApuntado/>
+      <hr />
+      <br />
+        <EspecialidadApuntadas/>
     </div>
   );
 }

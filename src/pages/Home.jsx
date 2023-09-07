@@ -96,12 +96,19 @@ function Home() {
 
               <p>{eachMenu.menuPrecio} €</p>
 
-              <p>
-                Vecinochef:{" "}
-                <Link to={`/user/user-profile/${eachMenu.creador._id}`}>
-                  {eachMenu.creador.userName}
-                </Link>
-              </p>
+
+              <div>
+                Vecinochef:
+                <p key={eachMenu.creador._id}>
+                  {eachMenu.creador._id === activeUserId ? (
+                    <p>{eachMenu.creador.userName}</p>
+                  ) : (
+                    <Link to={`/user/user-profile/${eachMenu.creador._id}`}>
+                      {eachMenu.creador.userName}
+                    </Link>
+                  )}
+                </p>
+              </div>
 
               <br />
               <div>
@@ -109,9 +116,7 @@ function Home() {
                 {eachMenu.participantes.map((eachParticipante) => (
                   <li key={eachParticipante._id}>
                     {eachParticipante._id === activeUserId ? (
-                      <Link to={`/user/myprofile`}>
-                        {eachParticipante.userName}
-                      </Link>
+                      <>{eachParticipante.userName}</>
                     ) : (
                       <Link to={`/user/user-profile/${eachParticipante._id}`}>
                         {eachParticipante.userName}

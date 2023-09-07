@@ -4,90 +4,82 @@ import service from "../services/service.config";
 import { useNavigate } from "react-router-dom";
 
 function EditMenu() {
+  const params = useParams();
 
-const params = useParams()
+  const navigate = useNavigate();
 
-const navigate = useNavigate()
+  const [platoNombre, setPlatoNombre] = useState("");
+  const [postreNombre, setPostreNombre] = useState("");
+  const [menuPrecio, setMenuPrecio] = useState("");
+  const [weekDay, setWeekDay] = useState("");
+  const [specialidades, setSpecialidades] = useState([]);
 
- const [platoNombre, setPlatoNombre] = useState("");
- const [postreNombre, setPostreNombre] = useState("");
- const [menuPrecio, setMenuPrecio] = useState("");
- const [weekDay, setWeekDay] = useState("");
- const [specialidades, setSpecialidades] = useState([]); 
+  const handlePlatoNombreChange = (e) => setPlatoNombre(e.target.value);
+  const handlePostreNombreChange = (e) => setPostreNombre(e.target.value);
+  const handleMenuPrecioChange = (e) => setMenuPrecio(e.target.value);
+  const handleWeekDayChange = (e) => setWeekDay(e.target.value);
 
-
- const handlePlatoNombreChange = (e) => setPlatoNombre(e.target.value);
- const handlePostreNombreChange = (e) => setPostreNombre(e.target.value);
- const handleMenuPrecioChange = (e) => setMenuPrecio(e.target.value);
- const handleWeekDayChange = (e) => setWeekDay(e.target.value);
-
- useEffect(() => {
+  useEffect(() => {
     async function fetchSpecialidades() {
       try {
         const response = await service.get("/esp/especialidades");
-        setSpecialidades(response.data); 
+        setSpecialidades(response.data);
       } catch (error) {
         navigate("/user/myprofile");
       }
     }
 
-    getData()
+    getData();
 
     fetchSpecialidades();
   }, [navigate]);
 
-const getData = async () => {
+  const getData = async () => {
     try {
-const response = await service.get(`/menu/edit-menu/${params.id}`)
-console.log(response)
-setPlatoNombre (response.data.platoNombre)
-setPostreNombre (response.data.postreNombre)
-setMenuPrecio (response.data.menuPrecio)
-setWeekDay (response.data.weekDay)
+      const response = await service.get(`/menu/edit-menu/${params.id}`);
+      console.log(response);
+      setPlatoNombre(response.data.platoNombre);
+      setPostreNombre(response.data.postreNombre);
+      setMenuPrecio(response.data.menuPrecio);
+      setWeekDay(response.data.weekDay);
     } catch (error) {
-      console.log(error)
-      navigate("/error")
+      console.log(error);
+      navigate("/error");
     }
+  };
 
-}
-
-const handleSubmit = async (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-        await service.put(`/menu/edit-menu/${params.id}`, {
+      await service.put(`/menu/edit-menu/${params.id}`, {
         platoNombre,
         postreNombre,
         menuPrecio,
-        weekDay, 
-        })
+        weekDay,
+      });
 
-        navigate("/user/myprofile")
-
+      navigate("/user/myprofile");
     } catch (error) {
-      console.log(error)
-      navigate("/error")
+      console.log(error);
+      navigate("/error");
     }
-    }
+  };
 
-    const handleDelete = async ( ) => {
-
+  const handleDelete = async () => {
     try {
-    
-    await service.delete (`/menu/edit-menu/${params.id}`)
-    navigate("/user/myprofile")
-        
+      await service.delete(`/menu/edit-menu/${params.id}`);
+      navigate("/user/myprofile");
     } catch (error) {
-       console.log(error) 
-       navigate("/error")
+      console.log(error);
+      navigate("/error");
     }
-
-    }
+  };
 
   return (
-<div>
-    <h3>Editar menú</h3>
+    <div>
+      <h3>Editar menú</h3>
 
-    <form onSubmit={handleSubmit}>
+      <form onSubmit={handleSubmit}>
         <label htmlFor="platoNombre">Plato principal</label>
         <select
           name="platoNombre"
@@ -101,10 +93,11 @@ const handleSubmit = async (e) => {
             </option>
           ))}
         </select>
+      
 
-      <br />
+        <br />
 
-      <label htmlFor="postreNombre">Postre</label>
+        <label htmlFor="postreNombre">Postre</label>
         <select
           name="postreNombre"
           onChange={handlePostreNombreChange}
@@ -112,42 +105,45 @@ const handleSubmit = async (e) => {
         >
           <option value="">Seleccionar postre</option>
           {specialidades.map((especialidad) => (
-            <option key={especialidad._id} value={especialidad.especialidadNombre}>
+            <option
+              key={especialidad._id}
+              value={especialidad.especialidadNombre}
+            >
               {especialidad.especialidadNombre}
             </option>
           ))}
         </select>
 
-      <br />
+        <br />
 
-      <label htmlFor="menuPrecio">Precio:</label>
-      <input
-        type="text"
-        name="menuPrecio"
-        onChange={handleMenuPrecioChange}
-        value={menuPrecio}
-      />
+        <label htmlFor="menuPrecio">Precio:</label>
+        <input
+          type="text"
+          name="menuPrecio"
+          onChange={handleMenuPrecioChange}
+          value={menuPrecio}
+        />
 
-      <br />
+        <br />
 
-      <label htmlFor="weekDay">Día de la semana</label>
-      <input
-        type="text"
-        name="weekDay"
-        onChange={handleWeekDayChange}
-        value={weekDay}
-      />
+        <label htmlFor="weekDay">Día de la semana</label>
+        <input
+          type="text"
+          name="weekDay"
+          onChange={handleWeekDayChange}
+          value={weekDay}
+        />
 
-      <br />
-       
-      <button type="submit">Actualizar menú</button>
+        <br />
 
-      <br/>
+        <button type="submit">Actualizar menú</button>
 
-      <button onClick = {handleDelete}>Borrar menú</button>
+        <br />
 
-    </form>
-  </div>  )
+        <button onClick={handleDelete}>Borrar menú</button>
+      </form>
+    </div>
+  );
 }
 
-export default EditMenu
+export default EditMenu;
