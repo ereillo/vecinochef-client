@@ -46,7 +46,7 @@ function Signup() {
   return (
 <div class= "body" style={{marginTop: "50px"}}>    
         <Card.Body>
-          <Card.Title style={{ fontSize: '23px', color: 'blue', fontWeight: 'bold' }}>
+          <Card.Title style={{ fontSize: '23px', fontWeight: 'bold', marginBottom: "15px" }}>
             Registro
           </Card.Title>
           <form onSubmit={handleSignup}>
@@ -57,7 +57,7 @@ function Signup() {
                 name="userName"
                 value={userName}
                 onChange={handleUserNameChange}
-                style={{ width: "25%" }}
+                style={{ width: "15%" }}
               />
             </Form.Group>
 
@@ -68,7 +68,7 @@ function Signup() {
                 name="userSurname"
                 value={userSurname}
                 onChange={handleUserSurnameChange}
-                style={{ width: "25%" }}
+                style={{ width: "15%" }}
               />
             </Form.Group>
 
@@ -79,7 +79,7 @@ function Signup() {
                 name="email"
                 value={email}
                 onChange={handleEmailChange}
-                style={{ width: "25%" }}
+                style={{ width: "15%" }}
               />
             </Form.Group>
 
@@ -90,7 +90,7 @@ function Signup() {
                 name="password"
                 value={password}
                 onChange={handlePasswordChange}
-                style={{ width: "25%" }}
+                style={{ width: "15%" }}
               />
             </Form.Group>
 
@@ -101,11 +101,11 @@ function Signup() {
                 name="confirmPassword"
                 value={confirmPassword}
                 onChange={handleConfirmPasswordChange}
-                style={{ width: "25%" }}
+                style={{ width: "15%" }}
               />
             </Form.Group>
 
-            <Button variant="outline-primary" type="submit">
+            <Button variant="outline-primary" type="submit" style = {{marginTop: "10px"}}>
               Regístrate
             </Button>
             {errorMessage ? <p>{errorMessage}</p> : null}

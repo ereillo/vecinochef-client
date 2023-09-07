@@ -62,7 +62,7 @@ function UserProfile() {
       <Row className="justify-content-center">
         <Col xs={10} sm={4} md={3} lg={5}>
           <Card>
-            <Card.Body>
+            <Card.Body style = {{backgroundColor: "#c9e3d2"}}>
               <Card.Title>
                 Página de perfil de {userData.userName} {userData.userSurname}
               </Card.Title>

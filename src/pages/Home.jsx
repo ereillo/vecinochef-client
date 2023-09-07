@@ -77,7 +77,7 @@ function Home() {
   ];
 
   return (
-    <div class= "bodycomponentes" style = {{marginTop: "50px", marginTop: "30px" }}>
+    <div class= "bodycomponentes" style = {{marginTop: "50px", marginTop: "30px"}}>
       <h2>Lista de Menús</h2>
       <Row xs={1} md={3} className="g-4 justify-content-center">
         {allMenus === undefined ? (
@@ -101,7 +101,7 @@ function Home() {
                       marginLeft: "70px", 
                     }}
                   >
-                    <Card.Body>
+                    <Card.Body style={{backgroundColor: "#c6d3e1"}}>
                       <Card.Title className="h5">
                         {platosNombres[eachMenu.platoNombre]} y{" "}
                         {postresNombres[eachMenu.postreNombre]}
@@ -159,14 +159,14 @@ function Home() {
                             variant="danger"
                             onClick={() => desapuntarMenu(eachMenu._id)}
                           >
-                            Desapuntarse
+                            Date de baja
                           </Button>
                         ) : (
                           <Button
                             variant="success"
                             onClick={() => apuntarMenu(eachMenu._id)}
                           >
-                            Apuntarse
+                            Apúntate
                           </Button>
                         )
                       )}

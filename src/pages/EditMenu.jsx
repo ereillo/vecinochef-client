@@ -79,7 +79,7 @@ function EditMenu() {
   return (
     <div class= "bodycomponentes" style = {{marginTop: "50px"}}>
       <Card.Body>
-        <Card.Title style={{ fontSize: '23px', color: 'blue', fontWeight: 'bold', textAlign: 'center' }}>
+        <Card.Title style={{ fontSize: '23px', color: 'blue', fontWeight: 'bold', textAlign: 'center', color: "#92caf2"}}>
           Edita tu menú
         </Card.Title>
         <Form onSubmit={handleSubmit}>

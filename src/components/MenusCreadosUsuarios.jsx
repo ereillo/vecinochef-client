@@ -65,7 +65,7 @@ function MenusCreadosUsuarios() {
             .map((menu) => (
               <div key={menu._id} style={{ marginBottom: '20px' }}>
                 <Card style={{ width: '18rem', boxShadow: '0 4px 8px rgba(0,0,0,0.2)', marginBottom: '20px' }}>
-                  <Card.Body>
+                  <Card.Body style={{backgroundColor: "#c6d3e1"}}>
                   <Card.Subtitle className="mb-2 text-muted small">
                       <span className="weekday">{menu.weekDay}</span>
                     </Card.Subtitle>

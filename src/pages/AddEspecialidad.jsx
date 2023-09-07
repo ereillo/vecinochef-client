@@ -62,9 +62,9 @@ function AddEspecialidad(props) {
   };
 
   return (
-    <div class= "bodycomponentes" style = {{marginTop: "50px"}}>
+    <div class= "bodycomponentes" style = {{marginTop: "50px", color: "#98baf6"}}>
         <Card.Body>
-          <Card.Title style={{ fontSize: '23px', color: 'blue', fontWeight: 'bold', textAlign: 'center' }}>
+          <Card.Title style={{ fontSize: '23px', color: 'blue', fontWeight: 'bold', textAlign: 'center', color: "#92caf2"}}>
             Crea un plato
           </Card.Title>
           <Form onSubmit={handleSubmit}>

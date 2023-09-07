@@ -40,7 +40,7 @@ function MenusApuntado() {
         <p>No estás apuntado a ningún menú</p>
       ) : (
         menusUsuario.map((menu) => (
-          <div key={menu._id}>
+          <div key={menu._id} style={{backgroundColor: "#fbe9f2"}}>
             <li>
             {menu.weekDay}: {platosNombres[menu.platoNombre]} y {postresNombres[menu.postreNombre]} 
             </li>

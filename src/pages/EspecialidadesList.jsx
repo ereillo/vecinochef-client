@@ -73,6 +73,8 @@ function EspecialidadesList() {
           placeholder="Buscar por nombre de especialidad"
           value={searchQuery}
           onChange={(e) => setSearchQuery(e.target.value)}
+          style = {{width: "600px", alignContent: "center"}}
+          className="mx-auto"
         />
       </Form.Group>
       
@@ -97,7 +99,7 @@ function EspecialidadesList() {
                     src={eachEspecialidad.especialidadPic}
                     alt={eachEspecialidad.especialidadNombre}
                   />
-                  <Card.Body>
+                  <Card.Body style={{backgroundColor: "#c6d3e1"}}>
                     <Card.Title className="h5">
                       {eachEspecialidad.especialidadNombre}
                     </Card.Title>
@@ -141,14 +143,14 @@ function EspecialidadesList() {
                             desapuntarEspecialidad(eachEspecialidad._id)
                           }
                         >
-                          Desapuntarse
+                          Date de baja
                         </Button>
                       ) : (
                         <Button
                           variant="success"
                           onClick={() => apuntarEspecialidad(eachEspecialidad._id)}
                         >
-                          Apuntarse
+                          Solicítala
                         </Button>
                       )
                     )}

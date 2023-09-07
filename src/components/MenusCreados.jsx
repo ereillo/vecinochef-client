@@ -56,7 +56,7 @@ function MenusCreados() {
           {menusUsuario.map((menu) => (
             <Col key={menu._id} className="mb-4">
               <Link to={`/menu/edit-menu/${menu._id}`} className="text-decoration-none">
-                <Card className="h-100 custom-card">
+                <Card className="h-100 custom-card" style={{backgroundColor: "#c6d3e1"}}>
                   <Card.Body className="d-flex flex-column justify-content-center align-items-center">
                     <Card.Title className="text-center">
                       {platosNombres[menu.platoNombre]} y {postresNombres[menu.postreNombre]}

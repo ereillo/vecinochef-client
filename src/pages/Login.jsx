@@ -47,7 +47,7 @@ function Login() {
   return (
     <div class= "body" style={{marginTop: "50px"}}>
         <Card.Body>
-          <Card.Title style={{ fontSize: '23px', color: 'blue', fontWeight: 'bold' }}>
+          <Card.Title style={{ fontSize: '23px', fontWeight: 'bold', marginBottom: "10px"}}>
             Accede con tu correo
           </Card.Title>
           <form onSubmit={handleLogin}>
@@ -58,7 +58,7 @@ function Login() {
                 name="email"
                 value={email}
                 onChange={handleEmailChange}
-                style={{ width: "25%" }}
+                style={{ width: "20%" }}
               />
             </Form.Group>
 
@@ -69,11 +69,11 @@ function Login() {
                 name="password"
                 value={password}
                 onChange={handlePasswordChange}
-                style={{ width: "25%" }}
+                style={{ width: "20%" }}
               />
             </Form.Group>
 
-            <Button variant="outline-primary" type="submit">
+            <Button variant="outline-primary" type="submit" style = {{marginTop: "10px"}}>
               Accede
             </Button>
             {errorMessage ? <p>{errorMessage}</p> : null}

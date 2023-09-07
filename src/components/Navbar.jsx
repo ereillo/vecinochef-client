@@ -17,7 +17,7 @@ function CustomNavbar() {
   };
 
   return (
-    <Navbar bg="dark" variant="dark" expand="lg" sticky="top">
+    <Navbar expand="lg" sticky="top" style= {{backgroundColor: "#c6d3e1"}}>
       <Container className="mx-auto d-flex justify-content-center">
         {isUserActive ? (
           <Navbar.Brand as={Link} to="/menu/home">
