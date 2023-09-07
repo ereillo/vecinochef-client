@@ -57,6 +57,7 @@ function UserProfile() {
   };
 
   return (
+    <div class= "bodycomponentes" style = {{marginTop: "50px", marginTop: "30px" }}>
     <Container style={{ marginTop: "30px" }}>
       <Row className="justify-content-center">
         <Col xs={10} sm={4} md={3} lg={5}>
@@ -80,11 +81,8 @@ function UserProfile() {
         </Col>
       </Row>
     </Container>
+    </div>
   );
-  
-  
-  
-  
 }
 
 export default UserProfile;

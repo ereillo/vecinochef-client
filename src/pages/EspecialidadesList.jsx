@@ -6,9 +6,11 @@ import Button from "react-bootstrap/Button";
 import Card from "react-bootstrap/Card";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
+import Form from "react-bootstrap/Form";
 
 function EspecialidadesList() {
   const [allEspecialidades, setAllEspecialidades] = useState([]);
+  const [searchQuery, setSearchQuery] = useState(""); 
   const { activeUserId } = useContext(AuthContext);
   const navigate = useNavigate();
 
@@ -57,14 +59,28 @@ function EspecialidadesList() {
     }
   };
 
+  const filteredEspecialidades = allEspecialidades.filter((especialidad) =>
+    especialidad.especialidadNombre.toLowerCase().includes(searchQuery.toLowerCase())
+  );
+
   return (
-    <div style={{ marginTop: "30px" }}>
+    <div class= "bodycomponentes" style = {{marginTop: "50px", marginTop: "30px" }}>
       <h2>Lista de Especialidades</h2>
+      
+      <Form.Group>
+        <Form.Control
+          type="text"
+          placeholder="Buscar por nombre de especialidad"
+          value={searchQuery}
+          onChange={(e) => setSearchQuery(e.target.value)}
+        />
+      </Form.Group>
+      
       <Row xs={1} md={3} className="g-4 justify-content-center">
-        {allEspecialidades.length === 0 ? (
-          <h3>... buscando</h3>
+        {filteredEspecialidades.length === 0 ? (
+          <h3>No se encontraron especialidades</h3>
         ) : (
-          allEspecialidades.map((eachEspecialidad) => (
+          filteredEspecialidades.map((eachEspecialidad) => (
             <Col key={eachEspecialidad._id}>
               <div className="mx-auto">
                 <Card
@@ -118,7 +134,6 @@ function EspecialidadesList() {
                       </ul>
                     </Card.Text>
                     {eachEspecialidad.creador._id !== activeUserId && (
-                      // Verifica si el creador no es el usuario logeado
                       isUserApuntado(eachEspecialidad) ? (
                         <Button
                           variant="danger"
@@ -146,9 +161,6 @@ function EspecialidadesList() {
       </Row>
     </div>
   );
-  
-  
 }
 
 export default EspecialidadesList;
-

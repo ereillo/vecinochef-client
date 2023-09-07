@@ -59,7 +59,7 @@ function AddMenu(props) {
   };
 
   return (
-    <Card>
+    <div class= "bodycomponentes" style = {{marginTop: "50px"}}>
       <Card.Body>
         <Card.Title style={{ fontSize: '23px', color: 'blue', fontWeight: 'bold', textAlign: 'center' }}>
           Crea un menú
@@ -128,7 +128,7 @@ function AddMenu(props) {
           </Button>
         </Form>
       </Card.Body>
-    </Card>
+    </div>
   );
 }
 

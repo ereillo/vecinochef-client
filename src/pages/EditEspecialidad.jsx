@@ -92,8 +92,7 @@ function EditEspecialidad() {
   };
 
   return (
-    <div>
-      <Card>
+    <div class= "bodycomponentes" style = {{marginTop: "50px"}}>
         <Card.Body>
           <Card.Title style={{ fontSize: '23px', color: 'blue', fontWeight: 'bold', textAlign: 'center' }}>
             Edita tu plato
@@ -171,7 +170,6 @@ function EditEspecialidad() {
             </Button>
           </Form>
         </Card.Body>
-      </Card>
     </div>
   );
 }

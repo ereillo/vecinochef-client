@@ -77,7 +77,7 @@ function Home() {
   ];
 
   return (
-    <div style={{ marginTop: "30px" }}>
+    <div class= "bodycomponentes" style = {{marginTop: "50px", marginTop: "30px" }}>
       <h2>Lista de Menús</h2>
       <Row xs={1} md={3} className="g-4 justify-content-center">
         {allMenus === undefined ? (

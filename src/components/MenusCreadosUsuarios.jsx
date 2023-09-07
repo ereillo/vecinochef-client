@@ -66,12 +66,12 @@ function MenusCreadosUsuarios() {
               <div key={menu._id} style={{ marginBottom: '20px' }}>
                 <Card style={{ width: '18rem', boxShadow: '0 4px 8px rgba(0,0,0,0.2)', marginBottom: '20px' }}>
                   <Card.Body>
+                  <Card.Subtitle className="mb-2 text-muted small">
+                      <span className="weekday">{menu.weekDay}</span>
+                    </Card.Subtitle>
                     <Card.Title>
                       {platosNombres[menu.platoNombre]} y {postresNombres[menu.postreNombre]}
                     </Card.Title>
-                    <Card.Subtitle className="mb-2 text-muted small">
-                      <span className="weekday">{menu.weekDay}</span>
-                    </Card.Subtitle>
                     {/* Resto de contenido del menú */}
                   </Card.Body>
                 </Card>

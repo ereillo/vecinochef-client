@@ -20,7 +20,7 @@ function EspecialidadApuntadas() {
   };
 
   return (
-    <div>
+    <div class= "bodycomponentes">
     <h3>Especialidades que has encargado</h3>
     {especialidadesUsuario.length === 0 ? (
       <p>No tienes ninguna especialidad encargada</p>

@@ -1,4 +1,3 @@
-import './App.css'
 import Navbar from "./components/Navbar"
 import {Routes, Route} from "react-router-dom"
 import Signup from "./pages/Signup"
@@ -9,6 +8,8 @@ import Error from "./pages/Error"
 import NotFound from "./pages/NotFound"
 import Home from './pages/Home'
 import 'bootstrap/dist/css/bootstrap.min.css';
+import './App.css'
+
 
 
 import IsPrivate from './components/IsPrivate'
@@ -21,11 +22,10 @@ import EspecialidadesList from './pages/EspecialidadesList'
 import EditMenu from './pages/EditMenu'
 import UserProfile from './pages/UserProfile'
 
-
 function App() {
 
   return (
-    <>
+    <div className = "body">
      
     <Navbar/>
 
@@ -53,7 +53,7 @@ function App() {
 
     </Routes>
 
-    </>
+    </div>
   )
 }
 

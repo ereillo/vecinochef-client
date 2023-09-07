@@ -58,7 +58,7 @@ function MyProfile() {
   }
 
   return (
-    <div style={{ marginTop: "30px" }}>
+    <div class= "bodycomponentes" style = {{marginTop: "50px", marginTop: "30px" }}>
       <h2 style={{ marginBottom: "30px" }}>Tu página de perfil</h2>
       <Link to={`/user/edit-profile/${activeUserId}`}>
         <div>

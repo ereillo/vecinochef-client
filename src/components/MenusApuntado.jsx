@@ -34,7 +34,7 @@ function MenusApuntado() {
   };
 
   return (
-    <div>
+    <div class= "bodycomponentes">
       <h3>Menús a los que estás apuntado</h3>
       {menusUsuario.length === 0 ? (
         <p>No estás apuntado a ningún menú</p>

@@ -41,7 +41,8 @@ function MenusCreados() {
     }
   };
   return (
-    <Container style={{ marginTop: "30px" }}>
+    <div class= "bodycomponentes">
+    <Container>
       <h3 className="text-center">Tus menús publicados</h3>
       <Link to="/menu/add-menu">
         <div className="text-center mb-3">
@@ -68,6 +69,7 @@ function MenusCreados() {
         </Row>
       )}
     </Container>
+    </div>
   );
   
   
