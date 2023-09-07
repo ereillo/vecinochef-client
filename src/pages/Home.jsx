@@ -2,7 +2,7 @@ import { useContext, useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import service from "../services/service.config";
 import { AuthContext } from "../context/auth.context";
-import Button from 'react-bootstrap/Button';
+import Button from "react-bootstrap/Button";
 
 function Home() {
   const [allEspecialidades, setAllEspecialidades] = useState();
@@ -63,7 +63,15 @@ function Home() {
     }
   };
 
-  const customWeekDayOrder = ["Lunes", "Martes", "Miércoles", "Jueves", "Viernes", "Sábado", "Domingo"];
+  const customWeekDayOrder = [
+    "Lunes",
+    "Martes",
+    "Miércoles",
+    "Jueves",
+    "Viernes",
+    "Sábado",
+    "Domingo",
+  ];
 
   return (
     <div>
@@ -72,56 +80,69 @@ function Home() {
         <h3>... buscando</h3>
       ) : (
         allMenus
-        .sort((a, b) => {
-          const dayAIndex = customWeekDayOrder.indexOf(a.weekDay);
-          const dayBIndex = customWeekDayOrder.indexOf(b.weekDay);
-          return dayAIndex - dayBIndex;
-        })
-        .map((eachMenu) => (
-          <div key={eachMenu._id}>
-            <p>{eachMenu.weekDay}</p>
+          .sort((a, b) => {
+            const dayAIndex = customWeekDayOrder.indexOf(a.weekDay);
+            const dayBIndex = customWeekDayOrder.indexOf(b.weekDay);
+            return dayAIndex - dayBIndex;
+          })
+          .map((eachMenu) => (
+            <div key={eachMenu._id}>
+              <p>{eachMenu.weekDay}</p>
 
-            <h3>
-              {platosNombres[eachMenu.platoNombre]} y{" "}
-              {postresNombres[eachMenu.postreNombre]}{" "}
-            </h3>
+              <h3>
+                {platosNombres[eachMenu.platoNombre]} y{" "}
+                {postresNombres[eachMenu.postreNombre]}{" "}
+              </h3>
 
-            <p>{eachMenu.menuPrecio} €</p>
+              <p>{eachMenu.menuPrecio} €</p>
 
-             <p>Vecinochef: <Link to={`/user/user-profile/${eachMenu.creador._id}`}>
-                    {eachMenu.creador.userName}
-                  </Link></p>
-            
+              <p>
+                Vecinochef:{" "}
+                <Link to={`/user/user-profile/${eachMenu.creador._id}`}>
+                  {eachMenu.creador.userName}
+                </Link>
+              </p>
 
-            <br />
-            <div>
-              Vecinos apuntados:
-              {eachMenu.participantes.map((eachParticipante) => (
-                <li key={eachParticipante._id}>
-                  <Link to={`/user/user-profile/${eachParticipante._id}`}>
-                    {eachParticipante.userName}
-                  </Link>
-                </li>
-              ))}
+              <br />
+              <div>
+                Vecinos apuntados:
+                {eachMenu.participantes.map((eachParticipante) => (
+                  <li key={eachParticipante._id}>
+                    {eachParticipante._id === activeUserId ? (
+                      <Link to={`/user/myprofile`}>
+                        {eachParticipante.userName}
+                      </Link>
+                    ) : (
+                      <Link to={`/user/user-profile/${eachParticipante._id}`}>
+                        {eachParticipante.userName}
+                      </Link>
+                    )}
+                  </li>
+                ))}
+              </div>
+              {eachMenu.participantes.some(
+                (participant) => participant._id === activeUserId
+              ) ? (
+                <div>
+                  <Button
+                    variant="danger"
+                    onClick={() => desapuntarMenu(eachMenu._id)}
+                  >
+                    -
+                  </Button>{" "}
+                </div>
+              ) : (
+                <div>
+                  <Button
+                    variant="success"
+                    onClick={() => apuntarMenu(eachMenu._id)}
+                  >
+                    +
+                  </Button>{" "}
+                </div>
+              )}
             </div>
-            {eachMenu.participantes.some(
-              (participant) => participant._id === activeUserId
-            ) ? (
-              <div>
-              <Button variant="danger" onClick={() => desapuntarMenu(eachMenu._id)} >
-                -
-              </Button>{' '}
-              </div>
-            ) : (
-              
-              <div>
-              <Button variant="success" onClick={() => apuntarMenu(eachMenu._id)}>
-                +
-              </Button>{' '}
-              </div>
-            )}
-          </div>
-        ))
+          ))
       )}
     </div>
   );
