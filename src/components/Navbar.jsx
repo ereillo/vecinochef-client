@@ -1,46 +1,60 @@
 import React from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, NavLink, useNavigate } from "react-router-dom";
 import { useContext } from "react";
 import { AuthContext } from "../context/auth.context";
 import Button from 'react-bootstrap/Button';
+import Navbar from 'react-bootstrap/Navbar';
+import Nav from 'react-bootstrap/Nav';
+import Container from 'react-bootstrap/Container';
 
-
-function Navbar() {
+function CustomNavbar() {
   const navigate = useNavigate();
-
   const { isUserActive, verifyToken } = useContext(AuthContext);
 
   const handleLogOut = () => {
     localStorage.removeItem("authToken");
-
-    verifyToken(); //verifica un token que no existe para reiniciar los estados
-
+    verifyToken(); // Verifica un token que no existe para reiniciar los estados
     navigate("/login");
   };
+
   return (
-    <div>
-      {isUserActive === true ? (
-        <>
-          <Link to="/menu/home">Menús de la semana</Link>
-  
-          <Link to="/esp/especialidades">Lista de especialidades</Link>
-
-         
-          <Link to="/user/myprofile">Mi perfil</Link>
-          
-
-
-          <button onClick={handleLogOut}>Cerrar sesión</button>
-        </>
-      ) : (
-        <>
-          <Link to="/">Main</Link>
-          <Link to="/signup">Registro</Link>
-          <Link to="/login">Acceso</Link>
-        </>
-      )}
-    </div>
+    <Navbar bg="dark" variant="dark" expand="lg" sticky="top">
+      <Container className="mx-auto d-flex justify-content-center">
+        <Navbar.Brand as={Link} to="/menu/home" style={{marginLeft: "300px"}}>
+          Menús de la semana
+        </Navbar.Brand>
+        <Navbar.Toggle aria-controls="basic-navbar-nav" />
+        <Navbar.Collapse id="basic-navbar-nav">
+          <Nav className="mr-auto">
+            <Nav.Link as={NavLink} to="/esp/especialidades" activeClassName="active">
+              Lista de especialidades
+            </Nav.Link>
+            <Nav.Link as={NavLink} to="/user/myprofile" activeClassName="active">
+              Mi perfil
+            </Nav.Link>
+          </Nav>
+          {isUserActive === true ? (
+            <Button variant="outline-danger" onClick={handleLogOut}>
+              Cerrar sesión
+            </Button>
+          ) : (
+            <Nav>
+              <Nav.Link as={NavLink} to="/" activeClassName="active" exact>
+                Main
+              </Nav.Link>
+              <Nav.Link as={NavLink} to="/signup" activeClassName="active">
+                Registro
+              </Nav.Link>
+              <Nav.Link as={NavLink} to="/login" activeClassName="active">
+                Acceso
+              </Nav.Link>
+            </Nav>
+          )}
+        </Navbar.Collapse>
+      </Container>
+    </Navbar>
   );
 }
 
-export default Navbar;
+export default CustomNavbar;
+

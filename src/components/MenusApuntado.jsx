@@ -42,7 +42,7 @@ function MenusApuntado() {
         menusUsuario.map((menu) => (
           <div key={menu._id}>
             <li>
-              {platosNombres[menu.platoNombre]} y {postresNombres[menu.postreNombre]}
+            {menu.weekDay}: {platosNombres[menu.platoNombre]} y {postresNombres[menu.postreNombre]} 
             </li>
             <br />
           </div>

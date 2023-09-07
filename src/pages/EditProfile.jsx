@@ -120,7 +120,8 @@ const navigate = useNavigate()
             disabled={isUploading}
           />
 
-        </div>
+    </div>
+    
         {isUploading ? <h3>... uploading image</h3> : null}
         {profilePic ? (
           <div>

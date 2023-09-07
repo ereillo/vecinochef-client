@@ -3,6 +3,10 @@ import { Link, useParams, useNavigate } from "react-router-dom";
 import service from "../services/service.config";
 import EspecialidadesCreadasUsuarios from "../components/EspecialidadesCreadasUsuarios";
 import MenusCreadosUsuarios from "../components/MenusCreadosUsuarios";
+import Card from "react-bootstrap/Card";
+import Container from "react-bootstrap/Container";
+import Row from "react-bootstrap/Row";
+import Col from "react-bootstrap/Col";
 
 function UserProfile() {
   const { userId } = useParams();
@@ -53,21 +57,34 @@ function UserProfile() {
   };
 
   return (
-    <div>
-      <hr />
-    <h2>Página de perfil de {userData.userName} {userData.userSurname}</h2> 
-    <br />
-    <img src={userData.profilePic} width="150"
-          alt=""
-          style={{ borderRadius: "500px" }}/>
-      <EspecialidadesCreadasUsuarios/>
-      <br />
-      <hr />
-      <MenusCreadosUsuarios/>
-    </div>
+    <Container style={{ marginTop: "30px" }}>
+      <Row className="justify-content-center">
+        <Col xs={10} sm={4} md={3} lg={5}>
+          <Card>
+            <Card.Body>
+              <Card.Title>
+                Página de perfil de {userData.userName} {userData.userSurname}
+              </Card.Title>
+              <Card.Img
+                src={userData.profilePic}
+                alt=""
+                width="150"
+                style={{ borderRadius: "500px" }}
+              />
+              <hr />
+              <EspecialidadesCreadasUsuarios />
+              <hr />
+              <MenusCreadosUsuarios />
+            </Card.Body>
+          </Card>
+        </Col>
+      </Row>
+    </Container>
   );
-
-
+  
+  
+  
+  
 }
 
 export default UserProfile;

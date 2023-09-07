@@ -58,33 +58,30 @@ function MyProfile() {
   }
 
   return (
-    <div>
-      <h2>Tu página de perfil</h2>
+    <div style={{ marginTop: "30px" }}>
+      <h2 style={{ marginBottom: "30px" }}>Tu página de perfil</h2>
       <Link to={`/user/edit-profile/${activeUserId}`}>
         <div>
-        <Button variant="outline-primary"style={{width: "100px"}}>Edita tu perfil</Button>{' '}
+          <Button variant="outline-primary" style={{ width: "100px" }}>
+            Edita tu perfil
+          </Button>{' '}
         </div>
       </Link>
       <br />
-      <Link to="/esp/add-especialidad"><Button variant="outline-success">Crear nuevo plato</Button></Link>
-      <Link to="/menu/add-menu">
-          <div>
-        <Button variant="outline-success" style={{width: "100px"}}>Crear nuevo menú</Button>
-        </div>
-          </Link>
       <hr />
-      <EspecialidadesCreadas/>
+      <EspecialidadesCreadas />
       <hr />
       <br />
-      <MenusCreados/>
+      <MenusCreados />
       <hr />
       <br />
-      <MenusApuntado/>
+      <MenusApuntado />
       <hr />
       <br />
-        <EspecialidadApuntadas/>
+      <EspecialidadApuntadas />
     </div>
   );
+
 }
 
 export default MyProfile;
