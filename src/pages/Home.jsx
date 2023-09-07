@@ -6,7 +6,7 @@ import Button from "react-bootstrap/Button";
 
 function Home() {
   const [allEspecialidades, setAllEspecialidades] = useState();
-  const [allMenus, setAllMenus] = useState();
+  const [allMenus, setAllMenus] = useState([]);
   const [platosNombres, setPlatosNombres] = useState({});
   const [postresNombres, setPostresNombres] = useState({});
   const { activeUserId } = useContext(AuthContext);
