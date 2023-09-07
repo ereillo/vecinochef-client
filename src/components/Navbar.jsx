@@ -20,11 +20,14 @@ function CustomNavbar() {
   return (
     <Navbar bg="dark" variant="dark" expand="lg" sticky="top">
       <Container className="mx-auto d-flex justify-content-center">
+        <isPrivate/>
         <Navbar.Brand as={Link} to="/menu/home" style={{marginLeft: "300px"}}>
           Menús de la semana
         </Navbar.Brand>
+        <isPrivate/>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
+        <isPrivate/>
           <Nav className="mr-auto">
             <Nav.Link as={NavLink} to="/esp/especialidades" activeClassName="active">
               Lista de especialidades
@@ -37,6 +40,7 @@ function CustomNavbar() {
             <Button variant="outline-danger" onClick={handleLogOut}>
               Cerrar sesión
             </Button>
+            
           ) : (
             <Nav>
               <Nav.Link as={NavLink} to="/" activeClassName="active" exact>

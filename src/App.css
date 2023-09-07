@@ -5,3 +5,7 @@
 a {
   margin: 10px
 }
+.input-narrow {
+  max-width: 200px;
+  margin: 0 auto; /* Centrar horizontalmente */
+}
